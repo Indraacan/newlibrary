@@ -50,10 +50,10 @@ export const deleteData = (id) => {
 
 export const edit = (data) => {
     return async(dispatch) => {
-        const response = await axios.put(`${url}/${data.id}`, data);
+        await axios.put(`${url}/edit/${data.id}`, data);
         dispatch({ 
             type: 'LIBRARIES_EDIT_DATA',
-            payload: response.data.data
+            payload: data
         })
 
         dispatch({ 

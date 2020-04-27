@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import {Formik, Form} from 'formik';
 import { add} from "./../../actioncreators/libraries";
 import { connect } from "react-redux";
-
+import {
+  Card, CardBody,Button
+} from 'reactstrap';
 
 
 const Formlib = (props) => {
@@ -38,7 +40,10 @@ const Formlib = (props) => {
         }}
         
         >
-             <Form
+
+            <Card>
+              <CardBody>
+              <Form
               onSubmit={onSubmit}
              >
              <div className="container">
@@ -90,16 +95,18 @@ const Formlib = (props) => {
                                      
                                  </div>
                                
-                                 <button
+                                 <Button
                                     type="submit"
                                      className='btn btn-outline-primary'
                                      >
                                      Add Book
-                                 </button>
+                                 </Button>
                              </div>
                          </div>
                   </div>
             </Form>
+              </CardBody>
+            </Card>
             </Formik>
     );
 }

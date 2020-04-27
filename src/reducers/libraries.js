@@ -1,10 +1,7 @@
 const initialState = {
     data: [],
-    dataDelete: {},
     dataEdit: {},
-    
-    isShowEdit: false,
-    isShowDelete: false
+    isShowEdit: false
 }
 
 const libraries = (state = initialState, action) => {
@@ -35,22 +32,11 @@ const libraries = (state = initialState, action) => {
         case 'LIBRARIES_GET_DATA':
             return {...state, data: action.payload}
 
-       
+        case 'LIBRARIES_HIDE_EDIT':
+            return {...state, isShowEdit: false};
 
-        // case 'LIBRARIES_HIDE_DELETE':
-        //     return {...state, isShowDelete: false};
-        
-        // case 'LIBRARIES_HIDE_EDIT':
-        //     return {...state, isShowEdit: false};
-        
-        // case 'LIBRARIES_SHOW_ADD':
-        //     return {...state, isShowAdd: true};
-        
-        // case 'LIBRARIES_SHOW_DELETE':
-        //     return {...state, isShowDelete: true, dataDelete: action.payload}
-
-        // case 'LIBRARIES_SHOW_EDIT':
-        //     return {...state, isShowEdit: true, dataEdit: action.payload}
+        case 'LIBRARIES_SHOW_EDIT':
+            return {...state, isShowEdit: true, dataEdit: action.payload}
                 
         default:
             return state;

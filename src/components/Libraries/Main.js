@@ -5,7 +5,7 @@ import { Table } from 'react-bootstrap';
 
 import { getData } from './../../actioncreators/libraries'
 import Edit from './Edit';
-import { deleteData, showDelete, showEdit } from './../../actioncreators/libraries'
+import { deleteData, showEdit } from './../../actioncreators/libraries'
 
 const Main = (props) => {
 
@@ -13,10 +13,6 @@ const Main = (props) => {
        if (!props.data.length)
             props.getData()
     }, [])
-   
-    const handleClickUbah = () => {
-        props.showEdit(props.data);
-    }
 
     return (
         <div>
@@ -38,7 +34,9 @@ const Main = (props) => {
                 <td>{item.bookNumber}</td>
                 <td>{item.status}</td>
                 <td>
-                <button className="btn btn-warning" onClick={handleClickUbah}>ubah</button>
+                <button className="btn btn-warning" onClick={() => {
+                            props.showEdit(props.data);
+                        }}>Edit</button>
                 <button className="btn btn-danger" onClick={ () => {  
                     const result = window.confirm("sure to delete")
                     if (result){
@@ -51,7 +49,6 @@ const Main = (props) => {
             }
             </tbody>
             </Table>
-            
             <Edit/>
         </div>
     )

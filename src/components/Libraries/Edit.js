@@ -6,14 +6,15 @@ import { edit, hideEdit } from "./../../actioncreators/libraries";
 
 const Edit = (props) => {
   const [data, setData] = useState({
-    number: props.data.number,
-    status: props.data.status,
-    title: props.data.title,
-    year: props.data.year,
+    title: props.data.bookTitle,
+    year: props.data.years,
+    number: props.data.bookNumber,
+    status: props.data.status 
   });
 
   const handleEdit = () => {
     props.edit(data);
+    console.log(data)
   };
 
   const handleClose = () => {
@@ -47,29 +48,29 @@ const Edit = (props) => {
             className="form-control"
             id="title"
             name="title"
-            value={data.title}
+            value={data.bookTitle}
             onChange={handleChange}
           />
         </div>
         <div className="form-group">
           <label htmlFor="year">Year</label>
           <input
-            type="number"
+            type="text"
             className="form-control"
             id="year"
             name="year"
-            value={data.year}
+            value={data.years}
             onChange={handleChange}
           />
         </div>
         <div className="form-group">
           <label htmlFor="number">Number</label>
           <input
-            type="number"
+            type="text"
             className="form-control"
-            id="number"
-            name="number"
-            value={data.number}
+            id="bookNumber"
+            name="bookNumber"
+            value={data.bookNumber}
             onChange={handleChange}
           />
         </div>
@@ -77,15 +78,12 @@ const Edit = (props) => {
           <div className="form-check">
             <input
               className="form-check-input"
-              type="checkbox"
+              type="text"
               id="status"
               name="status"
-              checked={data.status}
+              value={data.status}
               onChange={handleChange}
             />
-            <label className="form-check-label" htmlFor="status">
-              di pinjam
-            </label>
           </div>
         </div>
       </Modal.Body>
@@ -109,7 +107,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  edit
+  edit,
+  hideEdit
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Edit);
