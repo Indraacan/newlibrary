@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Table } from 'react-bootstrap';
 
 import { getData } from './../../actioncreators/libraries'
-import Delete from './Delete';
 import Edit from './Edit';
 import { deleteData, showDelete, showEdit } from './../../actioncreators/libraries'
 
@@ -14,10 +13,7 @@ const Main = (props) => {
        if (!props.data.length)
             props.getData()
     }, [])
-    const handleClick = () => {
-        props.showDelete(props.data);
-    }
-
+   
     const handleClickUbah = () => {
         props.showEdit(props.data);
     }
@@ -43,7 +39,12 @@ const Main = (props) => {
                 <td>{item.status}</td>
                 <td>
                 <button className="btn btn-warning" onClick={handleClickUbah}>ubah</button>
-                <button className="btn btn-danger" onClick={handleClick}>hapus</button>
+                <button className="btn btn-danger" onClick={ () => {  
+                    const result = window.confirm("sure to delete")
+                    if (result){
+                        props.deleteData(item._id);
+                    }
+                }}>Delete</button>
             </td>
                 </tr>
                 )
@@ -51,7 +52,6 @@ const Main = (props) => {
             </tbody>
             </Table>
             
-            <Delete/>
             <Edit/>
         </div>
     )
@@ -62,7 +62,7 @@ const mapStateToProps = (state) => {
         data: state.libraries.data
     }
 }
-const mapDispatchToProps = { getData, deleteData, showDelete, showEdit }
+const mapDispatchToProps = { getData, deleteData, showEdit }
 
 export default connect(
     mapStateToProps,

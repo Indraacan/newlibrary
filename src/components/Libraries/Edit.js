@@ -21,19 +21,12 @@ const Edit = (props) => {
   };
 
   const handleChange = (event) => {
-    let { name, value, type, checked } = event.currentTarget;
-    if (type == "checkbox") {
-      setData({
-        ...data,
-        [name]: checked,
-      });
-      console.log(checked);
-    } else {
+    let { name, value} = event.currentTarget;
+    
       setData({
         ...data,
         [name]: value,
       });
-    }
   };
 
   useEffect(() => {
@@ -116,8 +109,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  edit,
-  hideEdit,
+  edit
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Edit);

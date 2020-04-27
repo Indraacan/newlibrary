@@ -16,6 +16,7 @@ const store = createStore(reducers, applyMiddleware(thunk));
 
 store.subscribe(() => {
   console.log(store.getState());
+  
 })
 
 function App() {

@@ -7,13 +7,10 @@ export const add = (data) => {
     
     return dispatch => {
         axios.post(`${url}/post`, data)
+        // window.location.reload()
             .then((response)=> {
-                // response
-                console.log(response);
-                
                 dispatch({
                     type: 'LIBRARIES_ADD',
-                    // response.data.data
                     payload: response.data
                 })
             })
@@ -25,9 +22,8 @@ export const add = (data) => {
 export const getData = (data) => {
     return(dispatch) => {
         axios.get(`${url}/get`, data)
+
         .then((res)=> {
-            console.log(res);
-            
             dispatch({
                 type :"LIBRARIES_GET_DATA",
                 payload : res.data.data
@@ -38,18 +34,19 @@ export const getData = (data) => {
 
 export const deleteData = (id) => {
     return async(dispatch) => {
-        await axios.delete(`${url}/${id}`);
+       axios.delete(`${url}/delete/${id}`)
+       .then((res)=> {
+           console.log(res);
+        window.location.reload()
+       })     
+               dispatch({ 
+                    type: 'LIBRARIES_DELETE_DATA',
+                    payload: id
+                })
+                
+            }
         
-        dispatch({ 
-            type: 'LIBRARIES_DELETE_DATA',
-            payload: id
-        });
-
-        dispatch({ 
-            type: 'LIBRARIES_HIDE_DELETE'
-        });
     }
-}
 
 export const edit = (data) => {
     return async(dispatch) => {
@@ -66,40 +63,12 @@ export const edit = (data) => {
 }
 
 
-
-export const hideDelete = () => {
-    return {
-        type: 'LIBRARIES_HIDE_DELETE'
-    }
-}
-
 export const hideEdit = () => {
     return {
         type: 'LIBRARIES_HIDE_EDIT'
     }
 }
 
-// export const search = (query) => {
-//     return async(dispatch) => {
-//         const response = await axios.get(url, {
-//             params: {
-//                 title: query
-//             }
-//         });
-//         dispatch({ 
-//             type: 'LIBRARIES_GET_DATA',
-//             payload: response.data
-//         })
-//     }
-// }
-
-
-export const showDelete = (data) => {
-    return {
-        type: 'LIBRARIES_SHOW_DELETE',
-        payload: data
-    }
-}
 
 export const showEdit = (data) => {
     return {

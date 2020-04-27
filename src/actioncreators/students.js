@@ -4,15 +4,6 @@ const url = 'http://localhost:3500/students';
 
 export const add = (data) => {
     
-    // return dispatch => {
-        // axios.post(url, data)
-        //     .then((response)=> {
-        //         dispatch({
-        //             type: 'STUDENTS_ADD',
-        //             payload: response.data
-        //         })
-        //     })
-    // })
     return async(dispatch) => {
         const response = await axios.post(url, data);
         dispatch({ 

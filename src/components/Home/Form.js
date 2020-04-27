@@ -19,8 +19,7 @@ const Formlib = (props) => {
         
     };
         
-        
-    const handleChange = (event) => {
+       const handleChange = (event) => {
         let { name, value } = event.currentTarget;
             setData({
             ...data,
@@ -57,7 +56,7 @@ const Formlib = (props) => {
                                  />
                                </div>
                                 <div class="form-group">
-                                   <label for="year">Year</label>
+                                   <label for="years">Year</label>
                                    <input
                                      type="text"
                                      class="form-control"
